@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default"
+    namespace="PrgmrBill\RateMyCatBundle\Model"
+    defaultIdMethod="native"
+>
+    <table name="cats">
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
+        
+        <column name="id"
+            type="integer"
+            required="true"
+            primaryKey="true"
+            autoIncrement="true"
+            phpName="CatID"
+        />
+        <column name="name"
+            type="varchar"
+            primaryString="true"
+            size="255"
+        />
+        <column name="created_at"
+            type="timestamp"
+        />
+    </table>
+    
+    <table name="cat_pictures" isCrossRef="true">
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
+        
+        <foreign-key
+            foreignTable="cats"
+            name="cat_pictures_cat_id"
+            onDelete="cascade"
+            phpName="CatPictures">
+            <reference local="cat_id" foreign="id" />
+        </foreign-key>
+        
+        <column name="id"
+            type="integer"
+            required="true"
+            primaryKey="true"
+            autoIncrement="true"
+        />
+        <column name="cat_id"
+            type="integer"
+            required="true"
+        />
+        <column name="filename"
+            type="varchar"
+            primaryString="true"
+            size="255"
+            phpName="filename"
+        />
+        <column name="width"
+            type="integer"
+        />
+        <column name="height"
+            type="integer"
+        />
+    </table>
+    
+    <table name="cat_ratings">
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
+        
+        <foreign-key
+            foreignTable="cats"
+            name="cat_ratings_cat_id"
+            onDelete="cascade">
+            <reference local="cat_id" foreign="id" />
+        </foreign-key>
+        
+        <column name="id"
+            type="integer"
+            required="true"
+            primaryKey="true"
+            autoIncrement="true"
+        />
+        <column name="cat_id"
+            type="integer"
+            required="true"
+        />
+        <column name="width"
+            type="integer"
+        />
+    </table>
+</database>

@@ -1,0 +1,8 @@
+propel:
+  cats:
+    _attributes: { phpName: Cat }
+    id:
+    title:       varchar(255)
+    description: longvarchar
+    filename:    varchar(255) 
+    created_at:  datetime

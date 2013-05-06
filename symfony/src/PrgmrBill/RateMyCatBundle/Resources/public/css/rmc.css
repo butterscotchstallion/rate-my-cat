@@ -1,0 +1,84 @@
+
+body {
+    background: #fff url('/bundles/prgmrbillratemycat/images/back_pattern.png') repeat 0 0;
+}
+
+#container {
+    margin: 0 auto 3em auto;    
+    padding-bottom: 3em;
+}
+
+#top-header {
+    padding: 2em 2em 2em 1em;
+    background-color: #fff;
+}
+
+#nav {
+    background-color: #fff;
+    display: block;
+    margin: 2em 0 0 0;
+}
+
+#main {
+    background-color: #fff;
+    padding: 1em 2em 2em 2em;
+    min-height: 800px;
+    height: auto !important;
+    height: 800px;
+    overflow: hidden;
+}
+
+#slideshow {
+    width: 600px;
+    margin: 0 auto;
+}
+
+#slideshow img { display: none }
+
+#slideshow img.first { display: block }
+
+#slideshow div img { 
+    margin:auto;
+    display:block;
+}
+
+#slideshow div {
+    width: 600px;
+    height: 500px;
+}
+
+#slideshow-nav ul {
+    list-style: none;
+    display: block;
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+}
+
+#slideshow-nav ul li a {
+
+}
+
+#prev {
+    float: left;
+}
+
+#next {
+    float: right;
+}
+
+#slideshow-nav ul li {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+#logo {
+    font-family: arial, sans-serif;
+    font-weight: bold;
+    font-size: 200%;
+}
+
+#rating-area {
+
+}

@@ -1,0 +1,2 @@
+INSERT INTO `cats` VALUES (1,'Bella','2013-05-03 22:33:12'),(2,'Cayenne','2013-05-03 22:33:15');
+INSERT INTO `cat_pictures` VALUES (1,2,'bella_and_cayenne_and_bed.jpg',600,800),(2,1,'bella_on_box.jpg.jpg',600,450),(3,2,'cayenne.jpg',600,448),(4,2,'cayenne_and_bella.jpg',600,800),(5,2,'cayenne_bella_and_box.jpg',600,800),(6,2,'srscayenne.jpg',600,803),(7,2,'yogamat.jpg',600,797);

@@ -1,0 +1,10 @@
+/app/config/*
+/web/bundles/
+/app/bootstrap.php.cache
+/app/cache/*
+/app/logs/*
+src/PrgmrBill/RateMyCatBundle/Resources/public/images/
+/build/
+/vendor/
+/bin/
+/composer.phar
