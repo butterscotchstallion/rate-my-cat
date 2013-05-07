@@ -67,8 +67,8 @@ abstract class BaseCatsPeer
      * e.g. CatsPeer::$fieldNames[CatsPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('CatID', 'Name', 'CreatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('catID', 'name', 'createdAt', ),
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'CreatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'createdAt', ),
         BasePeer::TYPE_COLNAME => array (CatsPeer::ID, CatsPeer::NAME, CatsPeer::CREATED_AT, ),
         BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'CREATED_AT', ),
         BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'created_at', ),
@@ -82,8 +82,8 @@ abstract class BaseCatsPeer
      * e.g. CatsPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('CatID' => 0, 'Name' => 1, 'CreatedAt' => 2, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('catID' => 0, 'name' => 1, 'createdAt' => 2, ),
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'CreatedAt' => 2, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'createdAt' => 2, ),
         BasePeer::TYPE_COLNAME => array (CatsPeer::ID => 0, CatsPeer::NAME => 1, CatsPeer::CREATED_AT => 2, ),
         BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'CREATED_AT' => 2, ),
         BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'created_at' => 2, ),
@@ -294,7 +294,7 @@ abstract class BaseCatsPeer
     {
         if (Propel::isInstancePoolingEnabled()) {
             if ($key === null) {
-                $key = (string) $obj->getCatID();
+                $key = (string) $obj->getId();
             } // if key === null
             CatsPeer::$instances[$key] = $obj;
         }
@@ -317,7 +317,7 @@ abstract class BaseCatsPeer
     {
         if (Propel::isInstancePoolingEnabled() && $value !== null) {
             if (is_object($value) && $value instanceof Cats) {
-                $key = (string) $value->getCatID();
+                $key = (string) $value->getId();
             } elseif (is_scalar($value)) {
                 // assume we've been passed a primary key
                 $key = (string) $value;
@@ -717,13 +717,13 @@ abstract class BaseCatsPeer
             // delete related CatPictures objects
             $criteria = new Criteria(CatPicturesPeer::DATABASE_NAME);
 
-            $criteria->add(CatPicturesPeer::CAT_ID, $obj->getCatID());
+            $criteria->add(CatPicturesPeer::CAT_ID, $obj->getId());
             $affectedRows += CatPicturesPeer::doDelete($criteria, $con);
 
             // delete related CatRatings objects
             $criteria = new Criteria(CatRatingsPeer::DATABASE_NAME);
 
-            $criteria->add(CatRatingsPeer::CAT_ID, $obj->getCatID());
+            $criteria->add(CatRatingsPeer::CAT_ID, $obj->getId());
             $affectedRows += CatRatingsPeer::doDelete($criteria, $con);
         }
 

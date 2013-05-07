@@ -181,7 +181,7 @@ abstract class BaseCatPictures extends BaseObject implements Persistent
             $this->modifiedColumns[] = CatPicturesPeer::CAT_ID;
         }
 
-        if ($this->aCatPictures !== null && $this->aCatPictures->getCatID() !== $v) {
+        if ($this->aCatPictures !== null && $this->aCatPictures->getId() !== $v) {
             $this->aCatPictures = null;
         }
 
@@ -320,7 +320,7 @@ abstract class BaseCatPictures extends BaseObject implements Persistent
     public function ensureConsistency()
     {
 
-        if ($this->aCatPictures !== null && $this->cat_id !== $this->aCatPictures->getCatID()) {
+        if ($this->aCatPictures !== null && $this->cat_id !== $this->aCatPictures->getId()) {
             $this->aCatPictures = null;
         }
     } // ensureConsistency
@@ -997,7 +997,7 @@ abstract class BaseCatPictures extends BaseObject implements Persistent
         if ($v === null) {
             $this->setCatId(NULL);
         } else {
-            $this->setCatId($v->getCatID());
+            $this->setCatId($v->getId());
         }
 
         $this->aCatPictures = $v;

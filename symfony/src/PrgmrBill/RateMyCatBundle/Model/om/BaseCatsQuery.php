@@ -19,11 +19,11 @@ use PrgmrBill\RateMyCatBundle\Model\CatsPeer;
 use PrgmrBill\RateMyCatBundle\Model\CatsQuery;
 
 /**
- * @method CatsQuery orderByCatID($order = Criteria::ASC) Order by the id column
+ * @method CatsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CatsQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method CatsQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  *
- * @method CatsQuery groupByCatID() Group by the id column
+ * @method CatsQuery groupById() Group by the id column
  * @method CatsQuery groupByName() Group by the name column
  * @method CatsQuery groupByCreatedAt() Group by the created_at column
  *
@@ -45,7 +45,7 @@ use PrgmrBill\RateMyCatBundle\Model\CatsQuery;
  * @method Cats findOneByName(string $name) Return the first Cats filtered by the name column
  * @method Cats findOneByCreatedAt(string $created_at) Return the first Cats filtered by the created_at column
  *
- * @method array findByCatID(int $id) Return Cats objects filtered by the id column
+ * @method array findById(int $id) Return Cats objects filtered by the id column
  * @method array findByName(string $name) Return Cats objects filtered by the name column
  * @method array findByCreatedAt(string $created_at) Return Cats objects filtered by the created_at column
  */
@@ -132,7 +132,7 @@ abstract class BaseCatsQuery extends ModelCriteria
      * @return                 Cats A model object, or null if the key is not found
      * @throws PropelException
      */
-     public function findOneByCatID($key, $con = null)
+     public function findOneById($key, $con = null)
      {
         return $this->findPk($key, $con);
      }
@@ -243,13 +243,13 @@ abstract class BaseCatsQuery extends ModelCriteria
      *
      * Example usage:
      * <code>
-     * $query->filterByCatID(1234); // WHERE id = 1234
-     * $query->filterByCatID(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterByCatID(array('min' => 12)); // WHERE id >= 12
-     * $query->filterByCatID(array('max' => 12)); // WHERE id <= 12
+     * $query->filterById(1234); // WHERE id = 1234
+     * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
-     * @param     mixed $catID The value to use as filter.
+     * @param     mixed $id The value to use as filter.
      *              Use scalar values for equality.
      *              Use array values for in_array() equivalent.
      *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
@@ -257,16 +257,16 @@ abstract class BaseCatsQuery extends ModelCriteria
      *
      * @return CatsQuery The current query, for fluid interface
      */
-    public function filterByCatID($catID = null, $comparison = null)
+    public function filterById($id = null, $comparison = null)
     {
-        if (is_array($catID)) {
+        if (is_array($id)) {
             $useMinMax = false;
-            if (isset($catID['min'])) {
-                $this->addUsingAlias(CatsPeer::ID, $catID['min'], Criteria::GREATER_EQUAL);
+            if (isset($id['min'])) {
+                $this->addUsingAlias(CatsPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
                 $useMinMax = true;
             }
-            if (isset($catID['max'])) {
-                $this->addUsingAlias(CatsPeer::ID, $catID['max'], Criteria::LESS_EQUAL);
+            if (isset($id['max'])) {
+                $this->addUsingAlias(CatsPeer::ID, $id['max'], Criteria::LESS_EQUAL);
                 $useMinMax = true;
             }
             if ($useMinMax) {
@@ -277,7 +277,7 @@ abstract class BaseCatsQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(CatsPeer::ID, $catID, $comparison);
+        return $this->addUsingAlias(CatsPeer::ID, $id, $comparison);
     }
 
     /**
@@ -510,7 +510,7 @@ abstract class BaseCatsQuery extends ModelCriteria
     public function prune($cats = null)
     {
         if ($cats) {
-            $this->addUsingAlias(CatsPeer::ID, $cats->getCatID(), Criteria::NOT_EQUAL);
+            $this->addUsingAlias(CatsPeer::ID, $cats->getId(), Criteria::NOT_EQUAL);
         }
 
         return $this;

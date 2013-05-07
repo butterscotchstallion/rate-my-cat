@@ -7,15 +7,24 @@ require.config({
     paths: {
         // Libs
         bootstrap     : 'lib/bootstrap.min',
-        cycle         : 'lib/cycle'
+        cycle         : 'lib/cycle',
+        rating        : 'lib/jquery.rating.pack'
     }
 });
 
-require(['jquery', 'cycle'], function($) {
+require(['jquery', 'cycle', 'rating', 'bootstrap'], function($) {
     $(function() {
+        // Initialize slideshow
         $('#slideshow').cycle({
             next: $('#next'),
-            prev: $('#prev')
+            prev: $('#prev'),
+            // turns off autoadvancing
+            timeout: 0
+        });
+        
+        // Initialize rating
+        $('.rating').rating({
+            
         });
     });
 });

@@ -111,7 +111,7 @@ abstract class BaseCats extends BaseObject implements Persistent
      *
      * @return int
      */
-    public function getCatID()
+    public function getId()
     {
         return $this->id;
     }
@@ -172,7 +172,7 @@ abstract class BaseCats extends BaseObject implements Persistent
      * @param int $v new value
      * @return Cats The current object (for fluent API support)
      */
-    public function setCatID($v)
+    public function setId($v)
     {
         if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
@@ -185,7 +185,7 @@ abstract class BaseCats extends BaseObject implements Persistent
 
 
         return $this;
-    } // setCatID()
+    } // setId()
 
     /**
      * Set the value of [name] column.
@@ -566,7 +566,7 @@ abstract class BaseCats extends BaseObject implements Persistent
         } catch (Exception $e) {
             throw new PropelException('Unable to get autoincrement id.', $e);
         }
-        $this->setCatID($pk);
+        $this->setId($pk);
 
         $this->setNew(false);
     }
@@ -704,7 +704,7 @@ abstract class BaseCats extends BaseObject implements Persistent
     {
         switch ($pos) {
             case 0:
-                return $this->getCatID();
+                return $this->getId();
                 break;
             case 1:
                 return $this->getName();
@@ -741,7 +741,7 @@ abstract class BaseCats extends BaseObject implements Persistent
         $alreadyDumpedObjects['Cats'][$this->getPrimaryKey()] = true;
         $keys = CatsPeer::getFieldNames($keyType);
         $result = array(
-            $keys[0] => $this->getCatID(),
+            $keys[0] => $this->getId(),
             $keys[1] => $this->getName(),
             $keys[2] => $this->getCreatedAt(),
         );
@@ -787,7 +787,7 @@ abstract class BaseCats extends BaseObject implements Persistent
     {
         switch ($pos) {
             case 0:
-                $this->setCatID($value);
+                $this->setId($value);
                 break;
             case 1:
                 $this->setName($value);
@@ -819,7 +819,7 @@ abstract class BaseCats extends BaseObject implements Persistent
     {
         $keys = CatsPeer::getFieldNames($keyType);
 
-        if (array_key_exists($keys[0], $arr)) $this->setCatID($arr[$keys[0]]);
+        if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setName($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setCreatedAt($arr[$keys[2]]);
     }
@@ -862,7 +862,7 @@ abstract class BaseCats extends BaseObject implements Persistent
      */
     public function getPrimaryKey()
     {
-        return $this->getCatID();
+        return $this->getId();
     }
 
     /**
@@ -873,7 +873,7 @@ abstract class BaseCats extends BaseObject implements Persistent
      */
     public function setPrimaryKey($key)
     {
-        $this->setCatID($key);
+        $this->setId($key);
     }
 
     /**
@@ -883,7 +883,7 @@ abstract class BaseCats extends BaseObject implements Persistent
     public function isPrimaryKeyNull()
     {
 
-        return null === $this->getCatID();
+        return null === $this->getId();
     }
 
     /**
@@ -927,7 +927,7 @@ abstract class BaseCats extends BaseObject implements Persistent
 
         if ($makeNew) {
             $copyObj->setNew(true);
-            $copyObj->setCatID(NULL); // this is a auto-increment column, so set to default value
+            $copyObj->setId(NULL); // this is a auto-increment column, so set to default value
         }
     }
 

@@ -1,3 +1,0 @@
-prgmr_bill_rate_my_cat_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: PrgmrBillRateMyCatBundle:Default:index }

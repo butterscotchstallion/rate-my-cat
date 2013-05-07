@@ -1,0 +1,26 @@
+{% include '@views/header.html.twig' %}
+
+<table id="cat-listing-table" class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Pictures</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in cats %}
+            <tr>
+                <td class="span9">
+                    <a href="/cats/{{ c.id }}" title="{{ c.name|e }}">{{ c.name|e }}</a>
+                </td>
+                
+                <td class="span1">{{ c.pictureCount }}</td>
+                
+                <td class="span2">{{ c.rating }} ({{ c.voteCount }} votes)</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% include '@views/footer.html.twig' %}

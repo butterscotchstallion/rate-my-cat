@@ -9,23 +9,21 @@ body {
 }
 
 #top-header {
-    padding: 2em 2em 2em 1em;
+    padding: 2em 2em 0 2em;
     background-color: #fff;
 }
 
 #nav {
     background-color: #fff;
     display: block;
-    margin: 2em 0 0 0;
 }
 
 #main {
     background-color: #fff;
-    padding: 1em 2em 2em 2em;
-    min-height: 800px;
+    padding: 0 2em 2em 2em;
+    min-height: 805px;
     height: auto !important;
-    height: 800px;
-    overflow: hidden;
+    height: 805px;
 }
 
 #slideshow {
@@ -44,13 +42,11 @@ body {
 
 #slideshow div {
     width: 600px;
-    height: 500px;
 }
 
 #slideshow-nav ul {
     list-style: none;
     display: block;
-    overflow: auto;
     padding: 0;
     margin: 0;
 }
@@ -79,6 +75,32 @@ body {
     font-size: 200%;
 }
 
-#rating-area {
+#rating-form {
+    text-align: center;
+}
 
+#cat-profile-header {
+    padding-top: 0;
+    margin-top: 0;
+    margin-bottom: .25em;
+}
+
+#cat-profile-info-area {
+    margin-top: .25em;
+}
+
+#cat-profile-vote-area {
+    
+}
+
+#vote-form {
+    display: block;
+    float: right;
+    text-align: right;
+    margin: 0;
+    padding-right: 1em;
+}
+
+#vote-form a {
+    text-align: left;
 }

@@ -374,14 +374,14 @@ abstract class BaseCatRatingsQuery extends ModelCriteria
     {
         if ($cats instanceof Cats) {
             return $this
-                ->addUsingAlias(CatRatingsPeer::CAT_ID, $cats->getCatID(), $comparison);
+                ->addUsingAlias(CatRatingsPeer::CAT_ID, $cats->getId(), $comparison);
         } elseif ($cats instanceof PropelObjectCollection) {
             if (null === $comparison) {
                 $comparison = Criteria::IN;
             }
 
             return $this
-                ->addUsingAlias(CatRatingsPeer::CAT_ID, $cats->toKeyValue('PrimaryKey', 'CatID'), $comparison);
+                ->addUsingAlias(CatRatingsPeer::CAT_ID, $cats->toKeyValue('PrimaryKey', 'Id'), $comparison);
         } else {
             throw new PropelException('filterByCats() only accepts arguments of type Cats or PropelCollection');
         }

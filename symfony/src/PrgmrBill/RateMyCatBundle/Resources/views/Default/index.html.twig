@@ -1,78 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Rate my cat</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        
-        {% block stylesheets %}
-            <link href="{{ asset('/bundles/prgmrbillratemycat/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
-            <link href="{{ asset('/bundles/prgmrbillratemycat/css/bootstrap-responsive.min.css') }}" type="text/css" rel="stylesheet" />
-            
-            <!-- The beautiful background seen here is from http://subtlepatterns.com/back-pattern/ -->
-            <link href="{{ asset('/bundles/prgmrbillratemycat/css/rmc.css') }}" type="text/css" rel="stylesheet" />
-        {% endblock %}
-    </head>
-    <body>
-        <div id="container" class="container">
-            <header id="top-header">
-                <div id="logo">
-                    Rate My Cat
-                </div>
-                
-                <ul class="nav nav-tabs" id="nav">
-                    <li class="active">
-                        <a href="/">Cats</a>
-                    </li>
-                    <li>
-                        <a href="#">Ratings</a>
-                    </li>
-                </ul>
-            </header>
-            
-            <section id="main">
-                <form method="post" class="form-inline">
-                    <label class="inline radio">
-                        <input type="radio" name="cat_rating" value="1"> 1 
-                    </label>
-                    <label class="inline radio">
-                        <input type="radio" name="cat_rating" value="2"> 2
-                    </label>
-                    <label class="inline radio">
-                        <input type="radio" name="cat_rating" value="3"> 3
-                    </label>
-                    <label class="inline radio">
-                        <input type="radio" name="cat_rating" value="4"> 4
-                    </label>
-                </form>
-                
-                <nav id="slideshow-nav" class="clearfix">
-                    <ul>
-                        <li id="prev">
-                            <a href="#" 
-                               class="btn btn-primary"
-                               title="previous kitty"><i class="icon-white icon-arrow-left"></i> previous kitty</a>
-                        </li>
-                        <li id="next">
-                            <a href="#" 
-                               class="btn btn-primary"
-                               title="next kitty">next kitty <i class="icon-white icon-arrow-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
-                <div id="slideshow">
-                    {% for cat in cats %}
-                        <div><img src="/bundles/prgmrbillratemycat/images/cats/{{ cat.filename }}"
-                                  width="{{ cat.width }}"
-                                  height="{{ cat.height }}"
-                                  alt="{{ cat.name }}"></div>
-                    {% endfor %}
-                </div>
-            </section>            
-        </div>
-        
-        <script data-main="/bundles/prgmrbillratemycat/js/main" src="/bundles/prgmrbillratemycat/js/lib/require-jquery.js"></script>
-    </body>
-</html>
+{% include '@views/header.html.twig' %}
+
+    <form method="post" id="rating-form" class="well form-inline">
+        <label class="inline radio">
+            <input type="radio" name="cat_rating" class="rating" value="1">
+        </label>
+        <label class="inline radio">
+            <input type="radio" name="cat_rating" class="rating" value="2">
+        </label>
+        <label class="inline radio">
+            <input type="radio" name="cat_rating" class="rating" value="3">
+        </label>
+        <label class="inline radio">
+            <input type="radio" name="cat_rating" class="rating" value="4">
+        </label>
+    </form>
+    
+    <nav id="slideshow-nav" class="clearfix">
+        <ul>
+            <li id="prev">
+                <a href="#" 
+                   class="btn btn-primary"
+                   title="previous kitty"><i class="icon-white icon-arrow-left"></i> previous kitty</a>
+            </li>
+            <li id="next">
+                <a href="#" 
+                   class="btn btn-primary"
+                   title="next kitty">next kitty <i class="icon-white icon-arrow-right"></i></a>
+            </li>
+        </ul>
+    </nav>
+    <div id="slideshow">
+        {% for cat in cats %}
+            <div><img src="/bundles/prgmrbillratemycat/images/cats/{{ cat.filename }}"
+                      width="{{ cat.width }}"
+                      height="{{ cat.height }}"
+                      alt="{{ cat.name }}"></div>
+        {% endfor %}
+    </div>
+
+{% include '@views/footer.html.twig' %}

@@ -14,7 +14,6 @@
             required="true"
             primaryKey="true"
             autoIncrement="true"
-            phpName="CatID"
         />
         <column name="name"
             type="varchar"
@@ -83,12 +82,19 @@
             primaryKey="true"
             autoIncrement="true"
         />
+        
         <column name="cat_id"
             type="integer"
             required="true"
         />
-        <column name="width"
+        
+        <column name="rating"
             type="integer"
+            required="true"
+        />
+        
+        <column name="created_at"
+            type="timestamp"
         />
     </table>
 </database>

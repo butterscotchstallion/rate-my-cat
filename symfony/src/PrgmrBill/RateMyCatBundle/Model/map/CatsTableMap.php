@@ -42,7 +42,7 @@ class CatsTableMap extends TableMap
         $this->setPackage('src.PrgmrBill.RateMyCatBundle.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('id', 'CatID', 'INTEGER', true, null, null);
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('name', 'Name', 'VARCHAR', false, 255, null);
         $this->getColumn('name', false)->setPrimaryString(true);
         $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);

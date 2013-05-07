@@ -3,8 +3,11 @@
 /app/bootstrap.php.cache
 /app/cache/*
 /app/logs/*
-src/PrgmrBill/RateMyCatBundle/Resources/public/images/
+/src/PrgmrBill/RateMyCatBundle/Resources/public/images/
 /build/
 /vendor/
 /bin/
 /composer.phar
+/app/propel/migrations/
+*.sql
+
