@@ -5,6 +5,7 @@ namespace PrgmrBill\RateMyCatBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use \PrgmrBill\RateMyCatBundle\Model\CatsQuery;
 use \PrgmrBill\RateMyCatBundle\Model\CatPicturesQuery;
+use \PrgmrBill\RateMyCatBundle\Model\CatRatingsQuery;
 use \Propel;
 
 class CatProfileController extends Controller
@@ -24,7 +25,6 @@ class CatProfileController extends Controller
         // Pictures
         $pictures = CatPicturesQuery::getCatPicturesByCatID($catID);
         
-        // Build vote data
         /*
             [
                 ['Firefox',   45.0],
@@ -40,12 +40,31 @@ class CatProfileController extends Controller
                 ['Others',   0.7]
             ]
         */
-        $voteData = array();
+        $votes       = CatRatingsQuery::getRatingsGroupedByRatingByCatID($catID);
+        $tmp         = array();
+        $voteData    = '';
+        
+        // Build vote data string for charts
+        if ($votes) {
+            $tmpRatingTotal = CatRatingsQuery::getRatingTotalByCatID($catID);
+            $ratingTotal    = $tmpRatingTotal['total'];
+            
+            foreach ($votes as $key => $v) {
+                $percentage = $ratingTotal ? round($v['rating'] / $ratingTotal, 2) * 100 : 0;
+                $tmp[]      = sprintf('["Rated %s", %s]', $v['rating'], $percentage);
+            }
+            
+            $voteData = sprintf('[%s]', implode(',', $tmp));
+        }
+        
+        $totalVotes = CatRatingsQuery::getTotalRatingsByCatID($catID);
         
         return $this->render('PrgmrBillRateMyCatBundle:Profile:index.html.twig', array(
-            'cat'      => $cat,
-            'pictures' => $pictures,
-            'catID'    => $catID
+            'cat'        => $cat,
+            'pictures'   => $pictures,
+            'catID'      => $catID,
+            'voteData'   => $voteData,
+            'totalVotes' => $totalVotes
         ));
     }
     

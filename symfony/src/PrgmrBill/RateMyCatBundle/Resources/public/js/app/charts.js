@@ -28,8 +28,11 @@ define('charts', ['jquery', 'highcharts'], function ($, Highcharts) {
             text: votesChart.data('title')
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage}%</b>',
-            percentageDecimals: 1
+            //pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+            //percentageDecimals: 1
+            formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ this.point.y + '%';
+            }
         },
         plotOptions: {
             pie: {
@@ -40,7 +43,7 @@ define('charts', ['jquery', 'highcharts'], function ($, Highcharts) {
                     color: '#000000',
                     connectorColor: '#000000',
                     formatter: function() {
-                        return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                        return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
                     }
                 }
             }

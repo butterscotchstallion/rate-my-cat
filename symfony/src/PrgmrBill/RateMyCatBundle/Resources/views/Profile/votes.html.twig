@@ -1,6 +1,10 @@
 
 <div class="tab-pane" id="votes-pane">
+    <div class="alert alert-info">
+        <i class="icon-info-sign"></i> {{ cat.name|e }} has <strong>{{ totalVotes }}</strong> votes total.
+    </div>
+    
     <div id="votes-chart"
-         data-title="Votes"
-         data-vote-data=""></div>    
+         data-title="Votes on {{ cat.name|e }}"
+         data-vote-data="{{ voteData }}"></div>    
 </div>

@@ -8,7 +8,7 @@ class CatsQuery extends BaseCatsQuery
 {
     static public function getCats()
     {
-        $conn = Propel::getConnection(CatsPeer::DATABASE_NAME);
+        $conn = \Propel::getConnection(CatsPeer::DATABASE_NAME);
         
         // Get cats
         $query = "SELECT c.id,

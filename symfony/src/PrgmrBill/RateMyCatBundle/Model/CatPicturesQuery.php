@@ -8,6 +8,8 @@ class CatPicturesQuery extends BaseCatPicturesQuery
 {
     static public function getPictureCounts()
     {
+        $conn = \Propel::getConnection(CatsPeer::DATABASE_NAME);
+        
         // Build a lookup array for the picture count of each cat
         $query = "SELECT cp.cat_id AS catID,
                          COUNT(*) as pictureCount
