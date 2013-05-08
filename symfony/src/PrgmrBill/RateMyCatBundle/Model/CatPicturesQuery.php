@@ -6,6 +6,27 @@ use PrgmrBill\RateMyCatBundle\Model\om\BaseCatPicturesQuery;
 
 class CatPicturesQuery extends BaseCatPicturesQuery
 {
+    static public function getPictureCounts()
+    {
+        // Build a lookup array for the picture count of each cat
+        $query = "SELECT cp.cat_id AS catID,
+                         COUNT(*) as pictureCount
+                  FROM cat_pictures cp
+                  GROUP BY catID";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $tmpPictureCounts = $stmt->fetchAll();
+        $pictureCounts    = array();
+        
+        if ($tmpPictureCounts) {
+            foreach ($tmpPictureCounts as $c) {
+                $pictureCounts[$c['catID']] = $c;
+            }
+        }
+        
+        return $pictureCounts;
+    }
+    
     static public function getCatPicturesByCatID($catID)
     {
         $pictures = array();

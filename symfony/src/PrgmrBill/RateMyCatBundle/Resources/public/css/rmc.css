@@ -104,3 +104,7 @@ body {
 #vote-form a {
     text-align: left;
 }
+
+#profile-tab-container {
+    overflow: visible !important;
+}

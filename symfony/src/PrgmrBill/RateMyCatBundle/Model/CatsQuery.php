@@ -6,6 +6,22 @@ use PrgmrBill\RateMyCatBundle\Model\om\BaseCatsQuery;
 
 class CatsQuery extends BaseCatsQuery
 {
+    static public function getCats()
+    {
+        $conn = Propel::getConnection(CatsPeer::DATABASE_NAME);
+        
+        // Get cats
+        $query = "SELECT c.id,
+                         c.name
+                  FROM cats c
+                  ORDER BY c.name";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $cats = $stmt->fetchAll();
+        
+        return $cats;
+    }
+    
     static public function getCatByID($catID)
     {
         $cat = array();

@@ -8,7 +8,11 @@ require.config({
         // Libs
         bootstrap     : 'lib/bootstrap.min',
         cycle         : 'lib/cycle',
-        rating        : 'lib/jquery.rating.pack'
+        rating        : 'lib/jquery.rating.pack',
+        highcharts    : 'lib/highcharts',
+        
+        // App
+        charts        : 'app/charts'
     }
 });
 
@@ -26,5 +30,8 @@ require(['jquery', 'cycle', 'rating', 'bootstrap'], function($) {
         $('.rating').rating({
             
         });
+        
+        // Initialize highcharts
+        
     });
 });

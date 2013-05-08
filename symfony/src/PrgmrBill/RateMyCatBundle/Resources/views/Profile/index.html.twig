@@ -1,69 +1,74 @@
 {% include '@views/header.html.twig' %}
 <ul class="nav nav-tabs" id="nav">
     <li class="active">
-        <a href="/cats/{{ catID }}">Profile</a>
+        <a href="#profile-pane" data-toggle="tab">Profile</a>
     </li>
     <li>
-        <a href="/cats/{{ catID }}/votes">Votes</a>
+        <a href="#votes-pane" data-toggle="tab">Votes</a>
     </li>
 </ul>
 
-<div class="row-fluid">
-    <span class="span9">
-        <h1 id="cat-profile-header">{{ cat.name|e }}</h1>        
-    </span>
-    <span class="span3" id="cat-profile-vote-area">
-        <form method="post" id="vote-form" class="form-inline well well-small">
-            <label class="inline radio">
-                <input type="radio" name="cat_rating" class="rating" value="1">
-            </label>
-            <label class="inline radio">
-                <input type="radio" name="cat_rating" class="rating" value="2">
-            </label>
-            <label class="inline radio">
-                <input type="radio" name="cat_rating" class="rating" value="3">
-            </label>
-            <label class="inline radio">
-                <input type="radio" name="cat_rating" class="rating" value="4">
-            </label>
-            
-            Vote on this cat
-        </form>
-    </span>
+<div class="tab-content" id="profile-tab-container">
+    <div class="tab-pane active" id="profile-pane">
+        <div class="row-fluid">
+            <span class="span9">
+                <h1 id="cat-profile-header">{{ cat.name|e }}</h1>        
+            </span>
+            <span class="span3" id="cat-profile-vote-area">
+                <form method="post" id="vote-form" class="form-inline well well-small">
+                    <label class="inline radio">
+                        <input type="radio" name="cat_rating" class="rating" value="1">
+                    </label>
+                    <label class="inline radio">
+                        <input type="radio" name="cat_rating" class="rating" value="2">
+                    </label>
+                    <label class="inline radio">
+                        <input type="radio" name="cat_rating" class="rating" value="3">
+                    </label>
+                    <label class="inline radio">
+                        <input type="radio" name="cat_rating" class="rating" value="4">
+                    </label>
+                    
+                    Vote on this cat
+                </form>
+            </span>
+        </div>
+
+        <p class="alert alert-info" id="cat-profile-info-area">
+            <i class="icon-info-sign"></i>
+            <strong>{{ cat.name|e }}</strong> is rated <strong>{{ cat.rating }}</strong>
+            out of <strong>{{ cat.voteCount }}</strong> vote(s). <strong>{{ cat.name|e }}</strong>
+            has <strong>{{ pictures|length }}</strong> picture(s).
+        </p>
+        
+        {% if pictures|length > 1 %}
+            <nav id="slideshow-nav" class="clearfix">
+                <ul>
+                    <li id="prev">
+                        <a href="#" 
+                           class="btn btn-primary"
+                           title="previous picture"><i class="icon-white icon-arrow-left"></i> previous picture</a>
+                    </li>
+                    <li id="next">
+                        <a href="#" 
+                           class="btn btn-primary"
+                           title="next picture">next picture <i class="icon-white icon-arrow-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        {% endif %}
+
+        <div id="slideshow">
+            {% for p in pictures %}
+                <div><img src="/bundles/prgmrbillratemycat/images/cats/{{ p.filename }}"
+                          width="{{ p.width }}"
+                          height="{{ p.height }}"
+                          alt="{{ cat.name|e }}"></div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    {% include '@views/Profile/votes.html.twig' %}
 </div>
-
-<p class="alert alert-info" id="cat-profile-info-area">
-    <i class="icon-info-sign"></i>
-    <strong>{{ cat.name|e }}</strong> is rated <strong>{{ cat.rating }}</strong>
-    out of <strong>{{ cat.voteCount }}</strong> vote(s). <strong>{{ cat.name|e }}</strong>
-    has <strong>{{ pictures|length }}</strong> picture(s).
-</p>
-
-{% if pictures|length > 1 %}
-    <nav id="slideshow-nav" class="clearfix">
-        <ul>
-            <li id="prev">
-                <a href="#" 
-                   class="btn btn-primary"
-                   title="previous picture"><i class="icon-white icon-arrow-left"></i> previous picture</a>
-            </li>
-            <li id="next">
-                <a href="#" 
-                   class="btn btn-primary"
-                   title="next picture">next picture <i class="icon-white icon-arrow-right"></i></a>
-            </li>
-        </ul>
-    </nav>
-{% endif %}
-
-<div id="slideshow">
-    {% for p in pictures %}
-        <div><img src="/bundles/prgmrbillratemycat/images/cats/{{ p.filename }}"
-                  width="{{ p.width }}"
-                  height="{{ p.height }}"
-                  alt="{{ cat.name|e }}"></div>
-    {% endfor %}
-</div>
-
 
 {% include '@views/footer.html.twig' %}

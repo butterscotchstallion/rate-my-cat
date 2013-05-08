@@ -9,21 +9,6 @@ use \Propel;
 
 class CatProfileController extends Controller
 { 
-    public function votesAction($catID = 0)
-    {
-        if ($catID) {
-            
-            
-            
-            return $this->render('PrgmrBillRateMyCatBundle:Profile:votes.html.twig', array(
-                
-            ));
-            
-        } else {
-            $this->throwCatNotFound();
-        }
-    }
-    
     public function indexAction($catID = 0)
     {
         // Get the following:
@@ -38,6 +23,24 @@ class CatProfileController extends Controller
         
         // Pictures
         $pictures = CatPicturesQuery::getCatPicturesByCatID($catID);
+        
+        // Build vote data
+        /*
+            [
+                ['Firefox',   45.0],
+                ['IE',       26.8],
+                {
+                    name: 'Chrome',
+                    y: 12.8,
+                    sliced: true,
+                    selected: true
+                },
+                ['Safari',    8.5],
+                ['Opera',     6.2],
+                ['Others',   0.7]
+            ]
+        */
+        $voteData = array();
         
         return $this->render('PrgmrBillRateMyCatBundle:Profile:index.html.twig', array(
             'cat'      => $cat,
